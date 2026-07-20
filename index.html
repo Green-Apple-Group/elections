@@ -296,12 +296,116 @@ const employmentLayer = new FeatureLayer({
   }
 });
 
+// ACS Household Income Distribution - Census Tracts
+const censusTractsLayer = new FeatureLayer({
+  url: "https://p3eplmys2rvchkjx.svcs.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Household_Income_Distribution_View_Boundaries/FeatureServer/2",
+
+  title: "ACS Household Income - Census Tracts",
+
+  opacity: 0.55,
+
+  outFields: ["*"],
+
+  renderer: {
+  type: "class-breaks",
+
+  field: "B19001_calc_pctLT75E",
+
+  classBreakInfos: [
+    {
+      minValue: 0,
+      maxValue: 25,
+      symbol: {
+        type: "simple-fill",
+        color: "#edf8fb"
+      },
+      label: "0–25%"
+    },
+    {
+      minValue: 25,
+      maxValue: 50,
+      symbol: {
+        type: "simple-fill",
+        color: "#b2e2e2"
+      },
+      label: "25–50%"
+    },
+    {
+      minValue: 50,
+      maxValue: 75,
+      symbol: {
+        type: "simple-fill",
+        color: "#66c2a4"
+      },
+      label: "50–75%"
+    },
+    {
+      minValue: 75,
+      maxValue: 100,
+      symbol: {
+        type: "simple-fill",
+        color: "#238b45"
+      },
+      label: "75–100%"
+    }
+  ]
+},
+
+  popupTemplate: {
+    title: "Census Tract {TRACT}",
+
+    content: [
+      {
+        type: "fields",
+        fieldInfos: [
+          {
+            fieldName: "STATE_NAME",
+            label: "State"
+          },
+          {
+            fieldName: "COUNTY_NAME",
+            label: "County"
+          },
+          {
+            fieldName: "TRACT",
+            label: "Census Tract"
+          },
+          {
+            fieldName: "B19001_001E",
+            label: "Total Households",
+            format: {
+              digitSeparator: true,
+              places: 0
+            }
+          },
+          {
+            fieldName: "B19001_calc_pctLT75E",
+            label: "% Households Under $75,000",
+            format: {
+              places: 1
+            }
+          },
+          {
+            fieldName: "B19001_calc_pctGT200E",
+            label: "% Households Above $200,000",
+            format: {
+              places: 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+});
+
     // Add the layer to the map
     mapElement.map.add(censusLayer);
 
     mapElement.map.add(employmentLayer);
 
     mapElement.map.add(precinctLayer);
+
+    mapElement.map.add(householdIncomeLayer);
 
 // Create a search widget
    const searchWidget = new Search({
