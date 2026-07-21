@@ -78,6 +78,22 @@ arcgis-map {
       padding: 0;
       display: block;
     }
+
+arcgis-layer-list {
+    width: 320px;
+    height: 165px;
+
+    border: 2px solid #8DB600;
+
+    border-radius: 10px;
+
+    background-color: white;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,.35);
+
+    overflow: auto;
+}
+
   </style>
 </head>
 
@@ -95,8 +111,11 @@ arcgis-map {
     <arcgis-locate slot="top-left"></arcgis-locate>
 
     <arcgis-compass slot="top-left"></arcgis-compass>
-    <arcgis-layer-list slot="bottom-right"></arcgis-layer-list>
-    <arcgis-scale-bar slot="bottom-center"
+    <arcgis-layer-list
+                    slot="bottom-right"
+                    collapsed="true"
+                    drag-enabled="true"></arcgis-layer-list>
+                <arcgis-scale-bar slot="bottom-center"
                   unit="dual"></arcgis-scale-bar>
 
   </arcgis-map>
