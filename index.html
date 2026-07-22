@@ -112,10 +112,10 @@ arcgis-layer-list {
 
     <arcgis-compass slot="top-left"></arcgis-compass>
 
-    <arcgis-layer-list
+    <!-- <arcgis-layer-list
                     slot="bottom-right"
                     collapsed
-                    drag-enabled></arcgis-layer-list>
+                    drag-enabled></arcgis-layer-list> -->
 
     <arcgis-scale-bar slot="bottom-center"
                       unit="dual"></arcgis-scale-bar>
@@ -145,6 +145,28 @@ const Legend = await $arcgis.import(
 const Expand = await $arcgis.import(
   "@arcgis/core/widgets/Expand.js"
 );
+
+const LayerList = await $arcgis.import(
+  "@arcgis/core/widgets/LayerList.js"
+);
+
+<!-- const Expand = await $arcgis.import(
+  "@arcgis/core/widgets/Expand.js"
+); -->
+
+const layerList = new LayerList({
+  view: mapElement.view
+});
+
+const layerExpand = new Expand({
+  view: mapElement.view,
+  content: layerList,
+  expanded: false,
+  expandTooltip: "Layers",
+  expandIcon: "layers"
+});
+
+mapElement.view.ui.add(layerExpand, "top-right");
 
 const precinctLayer = new GeoJSONLayer({
   url: "https://raw.githubusercontent.com/marianomanzano/marks/main/Election_Precincts_2025.json",
