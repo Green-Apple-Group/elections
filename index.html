@@ -87,9 +87,9 @@ arcgis-layer-list {
 
     border-radius: 10px;
 
-    background-color: white;
+    background-color: rgb(177, 199, 180);
 
-    box-shadow: 0 6px 15px rgba(0,0,0,.35);
+    box-shadow: 0 3px 15px rgba(0,0,0,.35);
 
     overflow: auto;
 }
@@ -117,10 +117,14 @@ arcgis-layer-list {
 
     <arcgis-compass slot="top-left"></arcgis-compass>
 
-    <arcgis-layer-list
+    <!-- <arcgis-layer-list
                     slot="bottom-right"
                     collapsed
-                    drag-enabled></arcgis-layer-list>
+                    drag-enabled></arcgis-layer-list> -->
+
+    <arcgis-expand slot="bottom-right" expanded="false">
+    <arcgis-layer-list></arcgis-layer-list>
+</arcgis-expand>
 
     <arcgis-scale-bar slot="bottom-center"
                       unit="dual"></arcgis-scale-bar>
